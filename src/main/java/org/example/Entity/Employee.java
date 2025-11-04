@@ -4,46 +4,36 @@ import java.util.Objects;
 
 public class Employee {
     private int id;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
 
-    public Employee(int id, String firstName, String lastName) {
+    public Employee(int id, String firstname, String lastname) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
+    public int getId() { return id; }
+    public String getFirstname() { return firstname; }
+    public String getLastname() { return lastname; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
-        Employee employee = (Employee) o;
-        return id == employee.id;
+        Employee e = (Employee) o;
+        return id == e.id &&
+                Objects.equals(firstname, e.firstname) &&
+                Objects.equals(lastname, e.lastname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, firstname, lastname);
+    }
+
+    @Override
+    public String toString() {
+        return firstname + " " + lastname;
     }
 }
